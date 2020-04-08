@@ -7,7 +7,7 @@ RUN apk add --no-cache -t build-deps \
 RUN apk add --no-cache gnupg
 
 RUN git clone https://github.com/StackExchange/blackbox \
-  && export CWD=$(pwd)
+  && export CWD=$(pwd) \
   && cd blackbox \
   && make copy-install \
   && cd ${CWD} \
