@@ -25,8 +25,10 @@ function parseInputs {
 function main {
   parseInputs
 
+  echo "Changing directory to ${GITHUB_WORKSPACE%/}/${bbWorkingDir}"
   cd ${GITHUB_WORKSPACE%/}/${bbWorkingDir}
 
+  echo "Executing subcommand: ${bbSubcommand}}}"
   case "${bbSubcommand}" in
     postdeploy)
       blackbox_postdeploy
