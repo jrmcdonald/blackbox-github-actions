@@ -1,8 +1,8 @@
 FROM alpine:3 
 
-RUN apk add --no-cache --t build-deps \
+RUN apk add --no-cache -t build-deps \
   build-base \
-  git \
+  git
   
 RUN apk add --no-cache gnupg
 
