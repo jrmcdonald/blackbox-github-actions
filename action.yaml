@@ -1,0 +1,17 @@
+name: 'Blackbox GitHub Actions'
+description: 'Runs Blackbox commands via GitHub Actions.'
+author: 'Jamie McDonald <jamie@qwyck.net>'
+branding:
+  icon: 'terminal'
+  color: 'purple'
+inputs:
+  bb_actions_subcommand:
+    description: 'Blackbox subcommand to execute.'
+    required: true
+  bb_actions_working_dir:
+    description: 'Blackbox working directory.'
+    default: '.'
+runs:
+  using: 'docker'
+  image: './Dockerfile'
+
