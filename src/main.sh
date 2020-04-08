@@ -1,12 +1,6 @@
 #!/bin/bash
 
 function parseInputs {
-  # Required environment variables
-  if [[ -z ${GNUPGHOME}  ]]; then
-    echo "Environment variable GNUPGHOME must be set"
-    exit 1
-  fi
-
   # Required inputs
   if [ "${INPUT_BB_ACTIONS_SUBCOMMAND}" != "" ]; then
     bbSubcommand=${INPUT_BB_ACTIONS_SUBCOMMAND}
@@ -25,10 +19,8 @@ function parseInputs {
 function main {
   parseInputs
 
-  echo "Changing directory to ${GITHUB_WORKSPACE%/}/${bbWorkingDir}"
   cd ${GITHUB_WORKSPACE%/}/${bbWorkingDir}
 
-  echo "Executing subcommand: ${bbSubcommand}}}"
   case "${bbSubcommand}" in
     postdeploy)
       blackbox_postdeploy
