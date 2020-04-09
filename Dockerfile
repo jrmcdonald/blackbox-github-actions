@@ -1,20 +1,17 @@
-FROM alpine:3 
+FROM ubuntu:18.04 as builder
 
-RUN apk add --no-cache -t build-deps \
-  build-base \
+RUN apt-get update && apt-get install -y \
   git
   
-RUN apk add --no-cache bash \
- gnupg
+RUN git clone https://github.com/StackExchange/blackbox
+ 
+FROM ubuntu:18.04
 
-RUN git clone https://github.com/StackExchange/blackbox \
-  && export CWD=$(pwd) \
-  && cd blackbox \
-  && make copy-install \
-  && cd ${CWD} \
-  && rm -rf blackbox
+COPY --from=builder /blackbox/bin /usr/local/bin
     
-RUN apk del build-deps
+RUN apt-get update && apt-get install -y \
+  gnupg \
+  && rm -rf /var/lib/apt/lists/*
 
 USER 1001
 
