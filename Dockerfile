@@ -16,6 +16,8 @@ RUN git clone https://github.com/StackExchange/blackbox \
     
 RUN apk del build-deps
 
+USER 1001
+
 COPY ["src", "/src/"]
 
 ENTRYPOINT ["/src/main.sh"]
