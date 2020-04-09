@@ -1,4 +1,4 @@
-# Blackbox GitHub Actions
+# Blackbox GitHub Actions ![build](https://github.com/jrmcdonald/blackbox-github-actions/workflows/build/badge.svg)
 
 Blackbox GitHub Actions allow you to execute [Blackbox](https://github.com/StackExchange/blackbox) commands within GitHub Actions.
 
