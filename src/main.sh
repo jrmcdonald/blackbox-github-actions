@@ -1,6 +1,17 @@
 #!/bin/bash
 
 function parseInputs {
+  # Required environment variables
+  if [[ -z ${BLACKBOX_PUBKEY}  ]]; then
+    echo "Environment variable BLACKBOX_PUBKEY must be set"
+    exit 1
+  fi
+
+  if [[ -z ${BLACKBOX_PRIVKEY}  ]]; then
+    echo "Environment variable BLACKBOX_PRIVKEY must be set"
+    exit 1
+  fi
+
   # Required inputs
   if [ "${INPUT_BB_ACTIONS_SUBCOMMAND}" != "" ]; then
     bbSubcommand=${INPUT_BB_ACTIONS_SUBCOMMAND}
@@ -16,8 +27,14 @@ function parseInputs {
   fi
 }
 
+function setupKeys {
+  echo -e "${BLACKBOX_PUBKEY}" | gpg --import
+  echo -e "${BLACKBOX_PRIVKEY}" | gpg --import
+}
+
 function main {
   parseInputs
+  setupKeys
 
   cd ${GITHUB_WORKSPACE%/}/${bbWorkingDir}
 
