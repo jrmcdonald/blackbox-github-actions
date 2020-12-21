@@ -28,8 +28,8 @@ function parseInputs {
 }
 
 function setupKeys {
-  echo -e "${BLACKBOX_PUBKEY}" | gpg --import
-  echo -e "${BLACKBOX_PRIVKEY}" | gpg --import
+  echo -e "${BLACKBOX_PUBKEY}" | gpg --import --no-tty --batch --yes
+  echo -e "${BLACKBOX_PRIVKEY}" | gpg --import --no-tty --batch --yes
 }
 
 function main {
